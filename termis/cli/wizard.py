@@ -35,6 +35,9 @@ class ConfigWizard:
         # Get save location
         config_path = input("Save configuration to [termis.yml]: ") or "termis.yml"
         
+        # Clean configuration and convert types
+        config = ConfigWizard._clean_config(config)
+        
         # Write configuration to file
         with open(config_path, 'w') as f:
             yaml.dump(config, f, default_flow_style=False, sort_keys=False)
@@ -42,6 +45,32 @@ class ConfigWizard:
         print(f"Configuration saved to {config_path}")
         return config_path, config
     
+    @staticmethod
+    def _clean_config(config: Dict[str, Any]) -> Dict[str, Any]:
+        """Remove empty values from configuration.
+        
+        Args:
+            config: Configuration dictionary to clean
+            
+        Returns:
+            Cleaned configuration dictionary
+        """
+        def clean_dict(d):
+            if not isinstance(d, dict):
+                return d
+            return {k: clean_value(v) for k, v in d.items() if clean_value(v) not in [None, "", {}, []]}
+            
+        def clean_value(value):
+            if isinstance(value, dict):
+                return clean_dict(value)
+            elif isinstance(value, list):
+                return [clean_value(v) for v in value if v not in [None, "", {}, []]]
+            elif isinstance(value, str) and not value:
+                return None
+            return value
+            
+        return clean_dict(config)
+
     @staticmethod
     def _configure_tab(tab_id: str) -> Dict[str, Any]:
         """Configure a single tab.
@@ -80,7 +109,7 @@ class ConfigWizard:
             pane = {}
             
             # Basic pane configuration
-            pane['position'] = input(f"Position for pane {j+1} (e.g., '1/1', '1/2'): ")
+            pane['position'] = input(f"Position for pane {j+1} (e.g., '1/1/1', '1/2/1'): ")
             pane['title'] = input(f"Title for pane {j+1} [optional]: ")
             
             # Badge configuration
@@ -97,21 +126,7 @@ class ConfigWizard:
             
             # Directory and profile configuration
             pane['working_directory'] = input(f"Working directory for pane {j+1} [optional]: ")
-            pane['profile'] = input(f"Profile for pane {j+1} [optional, defaults to tab profile]: ")
-            
-            # Dependencies configuration
-            if j > 0:
-                add_dep = input(f"Does this pane depend on other panes? (y/n) [n]: ").lower() == 'y'
-                if add_dep:
-                    dependencies = []
-                    while True:
-                        dep_pos = input("Enter position of dependency (empty to finish): ")
-                        if not dep_pos:
-                            break
-                        dependencies.append(dep_pos)
-                    
-                    if dependencies:
-                        pane['depends_on'] = dependencies
+            pane['profile'] = input(f"Profile for pane {j+1} [optional, defaults to tab profile]: ")            
             
             # Commands configuration
             commands = []
@@ -124,6 +139,12 @@ class ConfigWizard:
             
             if commands:
                 pane['commands'] = commands
+                delay_input = input(f"Enter delay for pane {j+1} in seconds [optional]: ")
+                if delay_input:
+                    try:
+                        pane['command_delay'] = int(delay_input)
+                    except ValueError:
+                        print(f"Invalid delay value '{delay_input}', skipping command delay")
             
             # Tool integrations
             tools = ConfigWizard._configure_tools()
