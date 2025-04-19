@@ -3,7 +3,7 @@
 import os
 
 # Version
-VERSION = '0.5.1'
+VERSION = '0.5.2'
 
 # File paths and directories
 DEFAULT_CONFIG = 'termis.yml'
