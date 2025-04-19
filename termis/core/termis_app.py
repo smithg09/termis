@@ -244,6 +244,9 @@ class TermisApp:
             # Create or reuse tab based on configuration
             if first_tab:
                 curr_tab = window.current_tab
+                # Set tab title if provided
+                if tab_config.get('title'):
+                    await curr_tab.async_set_title(tab_config.get('title'))
             else:
                 curr_tab = await self.iterm_manager.create_tab_with_config(
                     window, tab_config, tab_id, profile_name, dry_run
