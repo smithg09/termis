@@ -1,0 +1,113 @@
+# Termis Sample Configuration
+
+# Basic Configuration
+profile: "Default"         # Default iTerm profile to use
+
+# Define tabs
+tabs:
+  frontend:
+    title: "Frontend"
+    root: "~/Documents/my_project"
+    focus: true
+    panes:
+      - position: "1/1"
+        title: "React Dev Server"
+        badge:
+          text: "📦 REACT"
+          theme: "primary"
+        commands:
+          - "git status"
+          - "git status"
+          - "git status"
+          - "git fetch"
+      - position: "1/2"
+        title: "Tests"
+        badge: 
+          text: "🧪 TESTS"
+          theme: "info"
+        commands:
+          - "echo 'Tests'"
+      - position: "2/1"
+        title: "Terminal"
+        badge: "💻 TERM"
+
+  backend:
+    title: "Backend"
+    root: "~/Documents/my_project"
+    panes:
+      - position: "1/1"
+        title: "API Server"
+        badge:
+          text: "🚀 API"
+          theme: "success"
+        commands:
+          - "echo 'API'"
+      - position: "1/2"
+        title: "Database"
+        badge:
+          text: "🗄️ DB"
+          theme: "secondary"
+        commands:
+          - "echo 'DB'"
+
+  monitoring:
+    title: "Monitoring"
+    root: "~/Documents/my_project"
+    panes:
+      - position: "1/1"
+        title: "Docker Stats"
+        badge: "🐳 DOCKER"
+        commands:
+          - "echo 'Docker'"
+      - position: "1/2"
+        title: "System Monitor"
+        badge: 
+          text: "📊 SYS"
+          theme: "warning"
+        commands:
+          - "echo 'SYS'"
+      - position: "2/1"
+        title: "Network"
+        badge: "🌐 NET"
+        commands:
+          - "echo 'NET'"
+      - position: "2/2"
+        title: "Logs"
+        badge: "📜 LOGS"
+        commands:
+          - "echo 'lOGS'"
+
+  git:
+    title: "Git Dashboard"
+    root: "~/Documents/my_project"
+    panes:
+      - position: "1/1"
+        title: "Status"
+        badge: "📈 GIT"
+        commands:
+          - "git status"
+      - position: "1/2"
+        title: "Log"
+        badge: "📝 LOG"
+        commands:
+          - "git log --graph --oneline --all"
+      - position: "2/1"
+        title: "Diff"
+        badge: "🔄 DIFF"
+        commands:
+          - "git diff"
+      - position: "2/2"
+        title: "Stash"
+        badge: "📦 STASH"
+        commands:
+          - "git stash list"
+
+  editor:
+    title: "Code Editor"
+    root: "~/Documents/my_project"
+    panes:
+      - position: "1/1"
+        title: "VS Code"
+        badge: "💻 CODE"
+        commands:
+          - "code ."  # Open VS Code

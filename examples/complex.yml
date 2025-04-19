@@ -1,0 +1,177 @@
+# Configuration with Extended Pane Positioning
+# Using the [column]/[row]/[column-in-row] format
+
+profile: "Default"
+
+metadata:
+  name: "Development Environment with Advanced Layout"
+  description: "Demonstrates the extended pane positioning feature"
+  author: "Your Name"
+  version: "1.0.0"
+
+tabs:
+  development:
+    title: "Dev Environment"
+    root: "~/Documents/my_project"
+    panes:
+      # Main editor pane (left side)
+      - position: "1/1/1"
+        title: "Editor"
+        focus: true
+        badge:
+          text: "📝 EDITOR"
+          theme: "primary"
+        commands:
+          - "echo 'EDITOR'"
+          
+      # Terminal panes in left column, second row
+      - position: "1/2/1"  # Left pane in second row
+        title: "Terminal 1"
+        badge:
+          text: "💻 TERM 1"
+          theme: "secondary"
+        commands:
+          - "echo 'TERM'"
+          
+      - position: "1/2/2"  # Right pane in second row
+        title: "Terminal 2" 
+        badge:
+          text: "💻 TERM 2"
+          theme: "info"
+        commands:
+          - "echo 'TERM 2'"         
+      # Right column with server logs
+      - position: "2/1/1"
+        title: "Server Logs"
+        badge:
+          text: "📊 LOGS"
+          theme: "success"
+        commands:
+          - "echo 'LOGS'"
+      - position: "3/1/1"
+        title: "Test 1"
+        badge: "Test 1"
+        commands: 
+          - "echo 'QUICK HELLO'"
+      - position: "3/1/2"
+        title: "Test 2"
+        badge: "Test 2"
+        commands: 
+          - "echo 'DELAYED HELLO 10'"
+        command_delay: 10
+      - position: "3/2/1"
+        title: "Test 3"
+        badge: "Test 3"
+        commands: 
+          - "echo 'QUICK HELLO'"
+      - position: "3/2/2"
+        title: "Server"
+        badge: "CODE TEST"
+        tools:
+          vscode:
+            files: ["file1"]
+            new_window: true
+          
+  monitoring:
+    title: "Monitoring"
+    root: "~/Documents/my_project"
+    panes:
+      # First column with system monitoring
+      - position: "1/1/1"
+        title: "System"
+        badge:
+          text: "🖥️ SYS"
+          theme: "warning"
+        commands:
+          - "echo 'SYS'"
+          
+      # Second column split into two rows
+      - position: "2/1/1"
+        title: "Docker"
+        badge:
+          text: "🐳 DOCKER"
+          theme: "success"
+        commands:
+          - "echo 'DOCKER'"
+          
+      # Second column, second row split into two columns
+      - position: "2/2/1"
+        title: "Network"
+        badge:
+          text: "🌐 NET"
+          theme: "info"
+        commands:
+          - "echo 'NET'"
+          
+      - position: "2/2/2"
+        title: "Disk"
+        badge:
+          text: "💾 DISK"
+          theme: "secondary"
+        commands:
+          - "echo 'DISK'"
+
+  # Complex layout example with three columns and nested rows
+  complex:
+    title: "Complex Layout"
+    root: "~/Documents/my_project"
+    panes:
+      # First column
+      - position: "1/1/1"
+        title: "Main"
+        badge:
+          text: "🏠 MAIN"
+          theme: "primary"
+        commands:
+          - "echo 'Main Panel'"
+          
+      # First column, second row with two sub-columns
+      - position: "1/2/1"
+        title: "Sub 1"
+        badge:
+          text: "1️⃣"
+          theme: "secondary"
+        commands:
+          - "echo 'Sub Panel 1'"
+          
+      - position: "1/2/2"
+        title: "Sub 2"
+        badge:
+          text: "2️⃣"
+          theme: "info"
+        commands:
+          - "echo 'Sub Panel 2'"
+          
+      # Second column
+      - position: "2/1/1"
+        title: "Secondary"
+        badge:
+          text: "🔄 SEC"
+          theme: "success"
+        commands:
+          - "echo 'Secondary Panel'"
+          
+      # Third column with three rows
+      - position: "3/1/1"
+        title: "Tertiary"
+        badge:
+          text: "📌 TERT"
+          theme: "warning"
+        commands:
+          - "echo 'Tertiary Panel'"
+          
+      - position: "3/2/1"
+        title: "Logs"
+        badge:
+          text: "📜 LOGS"
+          theme: "error"
+        commands:
+          - "echo 'Logs Panel'"
+          
+      - position: "3/3/1"
+        title: "Status"
+        badge:
+          text: "📊 STAT"
+          theme: "dark"
+        commands:
+          - "echo 'Status Panel'"

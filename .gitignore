@@ -1,0 +1,11 @@
+.idea
+.DS_Store
+venv
+dist
+build
+termis.egg-info
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+token
