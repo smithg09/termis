@@ -1,4 +1,4 @@
-# Termis
+# [Termis](https://pypi.org/project/termis/)
 Snap your setup into place
 
 Define your iTerm layouts and commands using YAML, then launch everything with a single command — your workspace, ready to go
